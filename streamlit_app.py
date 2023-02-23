@@ -1,4 +1,3 @@
-
 import contractions
 import corpora
 import dill as pickle
@@ -16,8 +15,6 @@ from sklearn.preprocessing import FunctionTransformer, Normalizer, RobustScaler
 import streamlit as st
 import subprocess
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
-python3 -m textblob.download_corpora
 
 @st.cache
 def load_model():
