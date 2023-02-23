@@ -14,7 +14,10 @@ import contractions
 from nrclex import NRCLex
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-final_pipe = joblib.load('final_pipe.joblib')
+@st.cache
+def load_model():
+	final_pipe = joblib.load('final_pipe.joblib')
+	return final_pipe
 
 st.markdown(" ### NOTE:")
 st.markdown("This is not meant to be a clinical or diagnostic tool. If you are experiencing thoughts of suicide, **help is available.**")
@@ -77,8 +80,8 @@ def get_data_from_text(text):
 	'anticip_e', 'joy_e', 'surpr_e', 'trust_e']
 	return df
 
-def return_prediction(df):
-	y_pred = np.where(final_pipe.predict_proba(textdata)[1,1] > 0.400, 1, 0)
+def return_prediction(df, finalmodel):
+	y_pred = np.where(finalmodel.predict_proba(textdata)[1,1] > 0.400, 1, 0)
     
 	if y_pred == 1:
 		return "Possible Suicide Risk indicated from text"
@@ -88,7 +91,8 @@ def return_prediction(df):
 if submit:
 	cleantext = express_clean(st.session_state.user_text)
 	textdata = get_data_from_text(cleantext)
-	st.write(return_prediction(textdata))
+	model = load_model()
+	st.write(return_prediction(textdata, model))
 	
 
 
