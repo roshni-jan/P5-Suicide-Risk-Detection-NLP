@@ -1,8 +1,11 @@
-import streamlit as st
+
+import contractions
+import corpora
 import dill as pickle
 import joblib
 import re 
 import string
+from nrclex import NRCLex
 import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer, make_column_selector as selector
@@ -10,8 +13,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, Normalizer, RobustScaler
-import contractions
-from nrclex import NRCLex
+import streamlit as st
+import subprocess
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 @st.cache
