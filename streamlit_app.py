@@ -17,6 +17,8 @@ import streamlit as st
 import subprocess
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+python -m textblob.download_corpora
+
 @st.cache
 def load_model():
 	final_pipe = joblib.load('final_pipe.joblib')
