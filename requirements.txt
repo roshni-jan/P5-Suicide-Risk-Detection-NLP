@@ -1,0 +1,7 @@
+contractions==0.1.73
+dill==0.3.6 
+nrclex==3.0.0
+numpy== 1.24.2
+pandas==1.5.3
+sklearn==1.2.1
+vaderSentiment==3.3.2
