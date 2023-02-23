@@ -14,6 +14,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, Normalizer, RobustScaler
 import streamlit as st
 import subprocess
+import textblob
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 @st.cache
