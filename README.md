@@ -275,7 +275,7 @@ Feel free to contact me through [LinkedIn](https://www.linkedin.com/in/roshni-ja
 │   ├── 4-emotions.png
 │   ├── 5-nrclex.png
 │   ├── 6-rocauc.png
-|		 ├── 7-norisk_demo.png
+|		├── 7-norisk_demo.png
 │   └── 8-suicrisk_demo.png
 ├── misc-notebook-tools
 │   ├── add_to_dictionary.txt
@@ -288,6 +288,7 @@ Feel free to contact me through [LinkedIn](https://www.linkedin.com/in/roshni-ja
 ├── .gitignore
 ├── 1-Intro-and-Data-Prep.ipynb
 ├── 2-Modeling-and-Conclusions.ipynb
+├── full-notebook.pdf
 ├── presentation.pdf
 └── README.md
 ```
