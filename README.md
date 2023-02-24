@@ -180,6 +180,10 @@ The final model had a **91.6%** accuracy rate in distinguishing suicide-risk cas
 
 With a recall rate higher than the precision rate, this model successfully minimizes false negative classifications. The final model had a recall rate of **92.4%**, meaning that it only failed to detect suicide risk in 7.6% of cases. This is particularly impressive given that [clinician recall rates](https://onlinelibrary.wiley.com/doi/10.1111/sltb.12395) range from 20 - 50%. 
 
+#### ROC - AUC Plot
+
+![img](./images/6-rocauc.png)
+
 ---
 
 ### Model Deployment
@@ -198,11 +202,11 @@ With a recall rate higher than the precision rate, this model successfully minim
 
 Below are screenshots showing the demo classifying text as **No Suicide Risk** and **Suicide Risk**:
 
-![risk](images/norisk_demo.png)
+![risk](images/7-norisk_demo.png)
 
 ---
 
-![risk](images/suicrisk_demo.png)
+![risk](images/8-suicrisk_demo.png)
 
 ---
 
