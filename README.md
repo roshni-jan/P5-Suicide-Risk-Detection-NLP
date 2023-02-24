@@ -2,7 +2,7 @@
 
 **Author:** [Roshni Janakiraman](https://www.linkedin.com/in/roshni-janakiraman/)
 
-![cover](/Users/roshnij/Documents/Flatiron/projects/5-Phase-Project/P5-Suicide-Risk-Detection-NLP/images/1-cover.jpeg)
+![cover](./images/1-cover.jpeg)
 
 ## Project Overview
 
@@ -65,7 +65,7 @@ The dataset used for this project was the *Suicide and Depression Dataset* from 
 
 This dataset consists of **232,074** posts from reddit. Each post was treated as an individual document. The dataset was evenly split between suicide risk and non-suicide risk posts:
 
-![classdist](images/2-classdist.png)
+![classdist](./images/2-classdist.png)
 
 ### Data Quality:
 
@@ -275,20 +275,20 @@ Feel free to contact me through [LinkedIn](https://www.linkedin.com/in/roshni-ja
 │   ├── 4-emotions.png
 │   ├── 5-nrclex.png
 │   ├── 6-rocauc.png
-|		├── 7-norisk_demo.png
+|		 ├── 7-norisk_demo.png
 │   └── 8-suicrisk_demo.png
 ├── misc-notebook-tools
 │   ├── add_to_dictionary.txt
 │   ├── correction_dictionary.json
-│   ├── single_token_list.json
-│   ├── 4-emotions.png
-│   ├── 5-nrclex.png
-│   ├── 6-rocauc.png
-|		├── 7-norisk_demo.png
-│   └── 8-suicrisk_demo.png
+│   └── single_token_list.json
+├── streamlit
+│   ├── final_pipe.joblib
+│   ├── project_env.yaml
+│   └── streamlit_app.py
 ├── .gitignore
-├── Final_Analysis_Notebook.ipynb
-├── Presentation.pdf
+├── 1-Intro-and-Data-Prep.ipynb
+├── 2-Modeling-and-Conclusions.ipynb
+├── presentation.pdf
 └── README.md
 ```
 
