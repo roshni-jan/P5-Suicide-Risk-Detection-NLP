@@ -77,8 +77,6 @@ def get_data_from_text(text):
 
 	df = pd.DataFrame([{'text':text} | sia.polarity_scores(text) | emot_dict])
 	df = pd.concat([df,df])
-	df.columns = ['text', 'neg_s', 'neut_s', 'pos_s', 'comp_s', 'anger_e', 'disgust_e', 'fear_e', 'sad_e', \
-	'anticip_e', 'joy_e', 'surpr_e', 'trust_e']
 	return df
 
 def return_prediction(df):
