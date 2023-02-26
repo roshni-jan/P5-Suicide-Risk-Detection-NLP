@@ -1,23 +1,17 @@
 import contractions
 import dill as pickle
 import joblib
-import re 
-import string
 from nrclex import NRCLex
 import numpy as np
 import pandas as pd
-from sklearn.compose import ColumnTransformer, make_column_selector as selector
+import re 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import FunctionTransformer, Normalizer, RobustScaler
+from sklearn.preprocessing import Normalizer, RobustScaler
 import streamlit as st
+import string
 import subprocess
-import textblob
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
-
-final_pipe = joblib.load('final_pipe.joblib')
 
 st.markdown(" ### NOTE:")
 st.markdown("This is not meant to be a clinical or diagnostic tool. If you are experiencing thoughts of suicide, **help is available.**")
@@ -30,6 +24,9 @@ st.markdown(" ###### Test how the Suicide Risk Detection Model would classify di
 st.markdown("    ")
 st.markdown("Type your message below and press **Submit**")
 
+cmd = ['python3','-m','textblob.download_corpora']
+subprocess.run(cmd)
+print("Working")
 
 
 form = st.form(key='my_form')
@@ -63,6 +60,12 @@ def express_clean(text):
 	return text
 
 def get_data_from_text(text):
+	jl_tfidf = joblib.load('tfidf_vect.joblib')
+	jl_rs = joblib.load('rs.joblib')
+	jl_norm = joblib.load('norm.joblib')
+
+	X_text_trf = pd.DataFrame(jl_tfidf.transform(pd.Series(text, index=[0])).toarray())
+
 	sia = SentimentIntensityAnalyzer()
 	emotion_list = ['anger', 'disgust', 'fear', 'sadness', 'anticipation', 'joy', 'surprise', 'trust']
 	pop_list = ['positive', 'negative']
@@ -72,15 +75,22 @@ def get_data_from_text(text):
 			emot_dict.pop(key)
 	for emot in emotion_list:
 		if emot not in emot_dict.keys():
-			emot_dict[emot] = 0
+		 emot_dict[emot] = 0
 
-	df = pd.DataFrame([{'text':text} | sia.polarity_scores(text) | emot_dict])
-	df = pd.concat([df,df])
-	return df
+	X_nums = pd.DataFrame([sia.polarity_scores(text) | emot_dict])
+	col_order = ['neg', 'neu', 'pos', 'compound', 'anger', 'disgust', 'fear', 'sadness', 'anticipation', 'joy', 'surprise', 'trust']
+	X_nums = X_nums[col_order]
+	X_nums_sc = jl_rs.transform(X_nums)
+	X_nums_sc = jl_norm.transform(X_nums_sc)
+	X_nums_sc = pd.DataFrame(X_nums_sc)
+
+	X_trf = pd.concat([X_text_trf, X_nums_sc], axis=1)
+	return X_trf
 
 def return_prediction(df):
-	y_pred = np.where(final_pipe.predict_proba(textdata)[1,1] > 0.400, 1, 0)
-    
+	jl_logreg = joblib.load('logreg.joblib')
+	y_pred = np.where(jl_logreg.predict_proba(textdata)[:,1] > 0.400, 1, 0)
+
 	if y_pred == 1:
 		return "Possible Suicide Risk indicated from text"
 	if y_pred == 0:

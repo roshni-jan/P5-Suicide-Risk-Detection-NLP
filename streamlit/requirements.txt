@@ -1,0 +1,8 @@
+contractions==0.1.73
+dill==0.3.6
+nltk==3.8.1
+NRCLex==4.0
+scikit-learn==1.2.1
+streamlit==1.19.0
+textblob==0.17.1
+vaderSentiment==3.3.2
