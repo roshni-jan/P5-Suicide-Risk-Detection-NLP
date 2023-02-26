@@ -1,5 +1,6 @@
 contractions==0.1.73
 dill==0.3.6
+json
 nltk==3.8.1
 NRCLex==4.0
 scikit-learn==1.2.1
