@@ -1,6 +1,7 @@
 import contractions
 import dill as pickle
 import joblib
+import json
 from nrclex import NRCLex
 import numpy as np
 import pandas as pd
